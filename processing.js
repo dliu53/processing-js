@@ -378,6 +378,28 @@ function buildProcessing( curElement ){
   
   // In case I ever need to do HSV conversion:
   // http://srufaculty.sru.edu/david.dailey/javascript/js/5rml.js
+  
+  
+// test_dliu53
+
+  p.brightness = function brightness(color){
+    c = p.color( redRange,greenRange,blueRange);
+    return c;
+  }
+  
+  p.hue = function hue(color){
+    c = p.color( 0*redRange,0*greenRange,0*blueRange);
+    return c;
+  }
+  
+  p.saturation = function saturation(color){
+    c = p.color( (126/255)*redRange,(126/255)*greenRange,(126/255)*blueRange);
+    return c;
+  }
+  
+//end    
+  
+  
   p.color = function color( aValue1, aValue2, aValue3, aValue4 ) {
     var aColor = "";
     
