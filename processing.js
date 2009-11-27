@@ -301,6 +301,7 @@ function buildProcessing( curElement ){
   var curShapeCount = 0;
   var curvePoints = [];
   var curTightness = 0;
+//  var curCurveDetail = 20;
   var opacityRange = 255;
   var redRange = 255;
   var greenRange = 255;
@@ -1669,6 +1670,23 @@ function buildProcessing( curElement ){
     
     curContext.closePath();
   };
+
+//  test_dliu53
+
+//   p.curveDetail = function( detail ) {
+//    curCurveDetail = detail;
+//  };
+
+  p.curve = function curve(x1, y1, x2, y2, x3, y3, x4, y4) {
+    p.beginShape();
+    p.curveVertex(x1, y1);
+    p.curveVertex(x2, y2);
+    p.curveVertex(x3, y3);
+    p.curveVertex(x4, y4);
+    p.endShape();
+  };
+
+//end
 
   p.bezier = function bezier( x1, y1, x2, y2, x3, y3, x4, y4 ) {
     curContext.lineCap = "butt";
