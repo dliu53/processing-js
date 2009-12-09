@@ -301,7 +301,7 @@ function buildProcessing( curElement ){
   var curShapeCount = 0;
   var curvePoints = [];
   var curTightness = 0;
-//  var curCurveDetail = 20;
+  var curCurveDetail = 20;
   var opacityRange = 255;
   var redRange = 255;
   var greenRange = 255;
@@ -377,10 +377,7 @@ function buildProcessing( curElement ){
     return p.ajax(url).split("\n");              
   };
   
-  // In case I ever need to do HSV conversion:
-  // http://srufaculty.sru.edu/david.dailey/javascript/js/5rml.js
-  
-  
+    
 // test_dliu53
 
   p.brightness = function brightness(c){
@@ -397,9 +394,57 @@ function buildProcessing( curElement ){
       var colors = p.color(c).split(","); 
      return parseInt( colors[1] );
   }
+
+  p.blendColor = function blendColor(c1,c2,MODE){  
+
+      var aColor = "";      
+      // Get RGBA values for Color 1 to floats
+      var colors1 = p.color(c1).split(",");
+      var r1 = parseInt( colors1[0].split("(")[1] ); 
+      var g1 = parseInt( colors1[1] );
+      var b1 = parseInt( colors1[2].split(")")[0] );
+      
+      // Get RGBA values for Color 2 to floats     
+      var colors2 = p.color(c2).split(",");
+      var r2 = parseInt( colors2[0].split("(")[1] ); 
+      var g2 = parseInt( colors2[1] );
+      var b2 = parseInt( colors2[2].split(")")[0] );   
+         
+      var r="";
+      var g="";
+      var b="";                  
+      // Return blend value for each mode
+      switch(MODE){            
+      case "ADD":                 
+          r = r1 + r2;
+          g = g1 + g2;
+          b = b1 + b2;
+      break;
+      case "SUBTRACT":                 
+          r = r1 - r2;
+          g = g1 - g2;
+          b = b1 - b2;
+      break;
+      case "DARKEST":                 
+          r = p.min(r1,r2);
+          g = p.min(g1,g2);
+          b = p.min(b1,b2);
+      break;
+      case "LIGHTEST":                 
+          r = p.max(r1,r2);
+          g = p.max(g1,g2);
+          b = p.max(b1,b2);
+      break;  
+      }
+      aColor = "rgb(" + r + "," + g + "," + b + ")";
+      return aColor;    
+  }
   
 //end    
   
+  
+  // In case I ever need to do HSV conversion:
+  // http://srufaculty.sru.edu/david.dailey/javascript/js/5rml.js
   
   p.color = function color( aValue1, aValue2, aValue3, aValue4 ) {
     var aColor = "";
@@ -1673,18 +1718,16 @@ function buildProcessing( curElement ){
 
 //  test_dliu53
 
-//   p.curveDetail = function( detail ) {
-//    curCurveDetail = detail;
-//  };
-
   p.curve = function curve(x1, y1, x2, y2, x3, y3, x4, y4) {
-    p.beginShape();
+
+    p.beginShape();  
     p.curveVertex(x1, y1);
     p.curveVertex(x2, y2);
     p.curveVertex(x3, y3);
     p.curveVertex(x4, y4);
     p.endShape();
-  };
+
+};
 
 //end
 
