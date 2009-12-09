@@ -394,7 +394,13 @@ function buildProcessing( curElement ){
       var colors = p.color(c).split(","); 
      return parseInt( colors[1] );
   }
-
+  
+  
+  const ADD = "ADD";
+  const SUBTRACT="SUBTRACT";
+  const DARKEST="DARKEST";
+  const LIGHTEST="LIGHTEST";
+  
   p.blendColor = function blendColor(c1,c2,MODE){  
 
       var aColor = "";      
