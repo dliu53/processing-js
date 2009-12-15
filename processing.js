@@ -1735,6 +1735,10 @@ function buildProcessing( curElement ){
 
 };
 
+  p.bezierPoint = function bezierPoint(a,b,c,d,t){
+    return (1-t)*(1-t)*(1-t)*a+3*(1-t)*(1-t)*t*b+3*(1-t)*t*t*c+t*t*t*d;
+}
+
 //end
 
   p.bezier = function bezier( x1, y1, x2, y2, x3, y3, x4, y4 ) {
