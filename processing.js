@@ -1738,6 +1738,10 @@ function buildProcessing( curElement ){
   p.bezierPoint = function bezierPoint(a,b,c,d,t){
     return (1-t)*(1-t)*(1-t)*a+3*(1-t)*(1-t)*t*b+3*(1-t)*t*t*c+t*t*t*d;
 }
+  p.curvePoint = function curvePoint(a,b,c,d,t){
+    return 0.5*((2*b)+(-a+c)*t+(2*a-5*b+4*c-d)*t*t+(-a+3*b-3*c+d)*t*t*t)
+}
+
 
 //end
 
